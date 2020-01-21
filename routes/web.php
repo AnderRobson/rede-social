@@ -34,7 +34,11 @@
 //        /** VERBO DELETE */
 //        Route::delete('usuarios/destroy/{user}', 'TestController@destroy')->name('users.destroy');
 //    });
-    Route::put('redesocial/amizade/{amizades}', 'AmizadesController@solicitacao')->name('amizades.solicitacao');
+
     /**Jeito novo */
-    Route::resource('redesocial', 'UsuariosController')->names('user')->parameters(['redesocial' => 'usuarios']);
+    Route::resource('redesocial/publicacao', 'PostsController')->names('publicacoes')->parameters(['redesocial' => 'publicacoes']);
     Route::resource('redesocial/amizade', 'AmizadesController')->names('amizades')->parameters(['redesocial' => 'amizades']);
+    Route::put('redesocial/amizade/{amizade}', 'AmizadesController@solicitacao')->name('amizades.solicitacao');
+    Route::resource('redesocial', 'UsuariosController')->names('user')->parameters(['redesocial' => 'usuarios']);
+
+

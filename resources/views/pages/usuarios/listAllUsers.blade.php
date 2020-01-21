@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/fontes.css">
-    <link rel="stylesheet" href="../css/estilo.css">
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.bundle.js"></script>
-    <script src="../js/app.js"></script>
+    <link rel="stylesheet" href="{{asset('sass/bootstrap.scss')}}">
+    <link rel="stylesheet" href="{{asset('css/fontes.css')}}">
+    <link rel="stylesheet" href="{{asset('css/estilo.css')}}">
     <title>Usuário</title>
     <style type="text/css">
         .fTopo{background-color:#000; width: 100%; height: 40px; margin:auto;}
@@ -135,5 +132,8 @@
         </div>
     </section>
 </aside>
+<script src="{{ asset('js/jquery.js')}}"></script>
+<script src="{{ asset('js/bootstrap.js')}}"></script>
+<script src="{{ asset('js/app.js')}}"></script>
 </body>
 </html>

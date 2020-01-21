@@ -1,1 +1,7 @@
-//
+//Para atualizar utilizar o comando 'npm run dev', sempre colocar as informações antes do inport
+
+$theme-colors: (
+    "primary": #f7991ec9
+);
+
+@import "~bootstrap/scss/bootstrap";

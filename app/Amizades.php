@@ -11,36 +11,24 @@ class Amizades extends Model
     /** @var string $table = Tabela referente a model */
     protected $table = 'amizades';
 
-    private $id;
-    private $idUsuarioDe;
-    private $idUsuarioPara;
-    private $created_at;
-    private $updated_at;
-
-    public function __construct()
-    {
-
-    }
-
-    public function __destruct()
-    {
-
-    }
-
-    public function __get($atributo) : Mix
-    {
-        return $this->$atributo;
-    }
-
-    public function __set($atributo, $valor)
-    {
-        $this->$atributo = $valor;
-    }
-
     public function find($campos = [] , $options = [])
     {
         if (empty($campos)) {
             return Amizades::all();
         }
+    }
+
+    public function verificarAmizade($idUsuarioDe, $idUsuarioPara)
+    {
+        $amizade = Amizades::where('idUsuarioDe', $idUsuarioDe)
+            ->where('idUsuarioPara', '=', $idUsuarioPara, 'OR')
+            ->where('idUsuarioDe', $idUsuarioPara)
+            ->where('idUsuarioPara', '=', $idUsuarioDe)->get();
+
+        if (count($amizade) == 0) {
+            return false;
+        }
+
+        return $amizade[0];
     }
 }

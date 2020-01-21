@@ -40,6 +40,7 @@ class AmizadesController extends Controller
      */
     public function store(Request $request, Usuarios $usuarios)
     {
+        dd($usuarios);
         $amizades = new Usuarios();
         $amizades->idUsuarioDe = $request->id;
         $amizades->idUsuarioPara = $request->apelido;
@@ -47,7 +48,7 @@ class AmizadesController extends Controller
 
         $amizades->save();
 
-        return redirect()->route('usuarios.show', ['usuario' => $amizades['idUsuarioDe']]);
+        return redirect()->route('user.show', ['usuarios' => $amizades['idUsuarioDe']]);
     }
 
     /**
@@ -88,25 +89,35 @@ class AmizadesController extends Controller
      * Accept the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Amizades  $amizades
+//     * @param  \App\Amizades  $amizades
      * @return \Illuminate\Http\Response
      */
-    public function solicitacao(Request $request, Amizades $amizades)
+    public function solicitacao(Request $request, $idUsuarioDe)
     {
-        if ($request['solicitacao'] == 'Adicionar') {
-//            $amizades->idUsuarioDe = ;
-//            $amizades->idUsuarioPara = ;
-//            $amizades->aceite = 3;
-        } else if ($request['solicitacao'] == 'Aceitar') {
-            $amizades->aceite = 2;
-            $amizades->save();
+//        dd($request);
+        if (isset($request['solicitacao'])) {
+            $amizades = new Amizades();
+            if ($request['solicitacao'] == 'Adicionar') {
+                $amizades->idUsuarioDe = $idUsuarioDe;
+                $amizades->idUsuarioPara = $request['idUsuarioPara'];
+                $amizades->aceite = 3;
 
-            return redirect()->route('user.show',['usuarios' => $amizades['idUsuarioDe']]);
-        } else if ($request['solicitacao'] == 'Adicionar') {
-
-        } else {
-//            return redirect()->route('user.edit' . $request)
-        }
+                $amizades->save();
+            } else {
+                $amizade = $amizades->verificarAmizade($idUsuarioDe,$request['idUsuarioPara']);
+                $amizade->delete();
+            }
+        } //else if ($request['solicitacao'] == 'Aceitar') {
+//            $amizades->aceite = 2;
+//            $amizades->save();
+//
+//            return redirect()->route('user.show',['usuarios' => $amizades['idUsuarioDe']]);
+//        } else if ($request['solicitacao'] == 'Adicionar') {
+//
+//        } else {
+////
+//        }
+        return redirect()->route('user.show', ['usuarios' => $idUsuarioDe]);
     }
 
     /**

@@ -16,6 +16,8 @@ class CreatePublicacoesTable extends Migration
         Schema::create('publicacoes', function (Blueprint $table) {
             $table->integerIncrements('id');
             $table->unsignedInteger('idUsuario');
+            $table->string('titulo', 100);
+            $table->string('slug', 100);
             $table->text('publicacao');
             $table->text('imagem')->nullable();
             $table->timestamps();

@@ -3,19 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Mix;
 
-class Usuarios extends Model
+class Posts extends Model
 {
     /** @var string $table = Tabela referente a model */
-    protected $table = 'usuarios';
+    protected $table = 'publicacoes';
 
     public function find($campos = [] , $options = [])
     {
         if (empty($campos)) {
-            $usuario = Usuarios::all();
-
-            return $usuario;
+            return Publicacoes::all();
         }
     }
 }

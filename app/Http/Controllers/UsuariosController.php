@@ -20,7 +20,7 @@ class UsuariosController extends Controller
         $usuarios = new Usuarios;
         $usuarios = $usuarios->find();
 
-        return view('listAllUsers', [
+        return view('pages.usuarios.listAllUsers', [
             'usuarios' => $usuarios,
             'request' => $request
         ]);
@@ -38,7 +38,7 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        return view('addUser');
+        return view('pages.login.addUser');
     }
 
     /**
@@ -66,6 +66,7 @@ class UsuariosController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Usuarios $usuarios
+     * @param  \App\Amizades $amizades
      * @return \Illuminate\Http\Response
      */
     public function show(Usuarios $usuarios)
@@ -75,17 +76,12 @@ class UsuariosController extends Controller
         $graduacao = $graduacao->find(['id' => $usuarios['graduacao']]);
         $usuarios['graduacao'] = $graduacao['titulo'];
         $amizades = new Amizades();
-        $amizades = $amizades->find($usuarios['id']);
+        $amizades = $amizades->verificarAmizade($usuarios['id'],2) ?? null;
 
-        $retorno = [
-            'usuarios' => $usuarios
-        ];
-
-        if ($amizades) {
-            $retorno += ['amizades' => $amizades];
-        }
-
-        return view('profile', $retorno);
+        return view('pages.usuarios.profile', [
+            'usuarios' => $usuarios,
+            'amizades' => $amizades
+        ]);
     }
 
     /**
@@ -96,7 +92,7 @@ class UsuariosController extends Controller
      */
     public function edit(Usuarios $usuarios)
     {
-        return view('editUSer', [
+        return view('pages.usuarios.editUSer', [
             'usuario' => $usuarios
         ]);
     }
