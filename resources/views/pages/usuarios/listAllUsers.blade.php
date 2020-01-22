@@ -60,7 +60,7 @@
     <div class="fundo">
         <section class="row"> <!--SegundaTerceira caixa-->
             <article class="col-12">
-                <img src="img/Logo-Oriente-Academia.png" alt="Logo Academia Oriente" class=" img-app img-responsiva Bloco-Centralizado">
+                <img src="{{asset('img/Logo-Oriente-Academia.png')}}" alt="Logo Academia Oriente" class=" img-app img-responsiva Bloco-Centralizado">
             </article>
         </section>
     </div>
@@ -82,12 +82,13 @@
                     <tbody>
                     @foreach($usuarios as $usuario)
                         <tr>
-                            <td> {{$usuario['nome']}} {{$usuario['sobrenome']}}</td>
-                            <td>{{$usuario['graduacao']}}</td>
-                            <td>{{$usuario['dataNascimento']}}</td>
-                            <td>{{$usuario['email']}}</td>
-                            <td>{{$usuario['created_at']}}</td>
-                            <td>{{$usuario['updated_at']}}</td>
+
+                            <td><a href="{{route('user.show', ['usuarios' => $usuario['id']])}}">{{$usuario['nome']}} {{$usuario['sobrenome']}}</a></td>
+                                <td>{{$usuario['graduacao']}}</td>
+                                <td>{{$usuario['dataNascimento']}}</td>
+                                <td>{{$usuario['email']}}</td>
+                                <td>{{$usuario['created_at']}}</td>
+                                <td>{{$usuario['updated_at']}}</td>
                             <td>
                                 <a href="{{route('user.edit', ['usuarios' => $usuario['id']])}}"><i class='icon-pencil'>Editar </i> | </a>
                                 <a href="{{route('user.destroy', ['usuarios' => $usuario['id']])}}"  onClick="return confirm('Você tem certeza que quer deletar?')"><i class='icon-trashcan'>Deletar</i></a>
@@ -105,10 +106,10 @@
     <section class="row">
         <div class="btn-group-vertical">
             <h3 class="centralizar icone">Menu</h3>
-            <a href="index-user.php" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
+            <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
             <a href="{{route('user.show', ['usuarios' => $usuarios[0]['id']])}}" class="btnLateral icone"><i class="icon-person icone"> Meu Perfil</i></a>
             <a href="amigos.php" class="btnLateral icone"><i class="icon-organization icone"> Amigos</i></a>
-            <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
+            <a href="{{route('user.usuarios')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
             <a href="imagens.php" class="btnLateral icone"><i class="icon-file-media icone"> Imagens</i></a>
             <a href="arquivos.php" class="btnLateral icone"><i class="icon-file-directory icone"> Arquivos</i></a>
             <a href="#" class="btnLateral icone btConfiguracao"><i class="icon-gear icone"> Configuração</i></a>

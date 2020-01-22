@@ -108,14 +108,14 @@
                     @foreach($publicacoes as $publicacao)
                         @if (empty($publicacao['imagem']))
                             <div class="pub" id="'.$id.'">
-                                <p><a href="#">'.$nome.'</a> - '.$pub["data"].'</p>
+                                <p><a href="#">{{$usuarios['nome']}}</a> - <a>{{$publicacao['created_at']}}</a></p>
                                 <span>{{$publicacao['publicacao']}}</span><br />
                             </div>
                         @else
                             <div class="pub" id="'.$id.'">
-                                <p><a href="#">'.$nome.'</a> - '.$pub["data"].'</p>
-                                <span>'.$pub['texto'].'</span>
-                                <img src="{{asset('upload/publicacao/' . $usuario['nome'] . '/' . $publicacao['imagem'])}}" />
+                                <p><a href="#">{{$usuarios['nome']}}</a> - <a>{{$publicacao['created_at']}}</a></p>
+                                <span>{{$publicacao['publicacao']}}</span>
+                                <img src="{{asset('upload/' . $publicacao['imagem'])}}" />
                             </div>
                         @endif
                     @endforeach
@@ -139,10 +139,10 @@
         <section class="row">
             <div class="btn-group-vertical">
                 <h3 class="centralizar icone">Menu</h3>
-                <a href="index-user.php" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
+                <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
                 <a href="#" class="btnLateral icone"><i class="icon-person icone"> Meu Perfil</i></a>
                 <a href="amigos.php" class="btnLateral icone"><i class="icon-organization icone"> Amigos</i></a>
-                <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
+                <a href="{{route('user.usuarios')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
                 <a href="imagens.php" class="btnLateral icone"><i class="icon-file-media icone"> Imagens</i></a>
                 <a href="arquivos.php" class="btnLateral icone"><i class="icon-file-directory icone"> Arquivos</i></a>
                 <a href="#" class="btnLateral icone btConfiguracao"><i class="icon-gear icone"> Configuração</i></a>

@@ -39,6 +39,7 @@
     Route::resource('redesocial/publicacao', 'PostsController')->names('publicacoes')->parameters(['redesocial' => 'publicacoes']);
     Route::resource('redesocial/amizade', 'AmizadesController')->names('amizades')->parameters(['redesocial' => 'amizades']);
     Route::put('redesocial/amizade/{amizade}', 'AmizadesController@solicitacao')->name('amizades.solicitacao');
+    Route::get('redesocial/usuarios', 'UsuariosController@users')->name('user.usuarios');
     Route::resource('redesocial', 'UsuariosController')->names('user')->parameters(['redesocial' => 'usuarios']);
 
 

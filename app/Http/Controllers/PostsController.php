@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Posts;
+use App\Usuarios;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -71,6 +72,7 @@ class PostsController extends Controller
     {
         //
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Amizades;
 use App\graduacoes;
+use App\Posts;
 use App\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,17 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
+    {
+        $publicacoes = new Posts();
+        $publicacoes = $publicacoes->find();
+
+        return view('pages.publicacoes.publicacao',[
+            'publicacoes' => $publicacoes
+        ]);
+    }
+
+    public function users(Request $request)
     {
         $usuarios = new Usuarios;
         $usuarios = $usuarios->find();
@@ -77,10 +88,13 @@ class UsuariosController extends Controller
         $usuarios['graduacao'] = $graduacao['titulo'];
         $amizades = new Amizades();
         $amizades = $amizades->verificarAmizade($usuarios['id'],2) ?? null;
+        $publicacoes = new Posts();
+        $publicacoes = $publicacoes->find(null, ['idUsuario' => $usuarios['id']]);
 
         return view('pages.usuarios.profile', [
             'usuarios' => $usuarios,
-            'amizades' => $amizades
+            'amizades' => $amizades,
+            'publicacoes' => $publicacoes
         ]);
     }
 

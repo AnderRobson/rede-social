@@ -101,7 +101,7 @@
                 <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
                 <a href="{{route('user.show', ['usuarios' => $usuario['id']])}}" class="btnLateral icone"><i class="icon-person icone"> Meu Perfil</i></a>
                 <a href="amigos.php" class="btnLateral icone"><i class="icon-organization icone"> Amigos</i></a>
-                <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
+                <a href="{{route('user.usuarios')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
                 <a href="imagens.php" class="btnLateral icone"><i class="icon-file-media icone"> Imagens</i></a>
                 <a href="arquivos.php" class="btnLateral icone"><i class="icon-file-directory icone"> Arquivos</i></a>
                 <a href="#" class="btnLateral icone btConfiguracao"><i class="icon-gear icone"> Configuração</i></a>

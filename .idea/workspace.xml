@@ -2,32 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd9051eb-5dcf-48f6-a000-08b6d02a2d99" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/login/addUser.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/usuarios/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Amizades.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Amizades.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AmizadesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AmizadesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsuariosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsuariosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Usuarios.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Usuarios.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_19_124226_create_publicacoes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_19_124226_create_publicacoes_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_19_185042_add_timestamps_tables.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/appMobile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/addUser.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/editUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/usuarios/editUser.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/listAllUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/usuarios/listAllUsers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/listUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/usuarios/listUser.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/profile.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Posts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/publicacoes/publicacao.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/publicacoes/publicacao.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/usuarios/editUser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/usuarios/editUser.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/usuarios/listAllUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/usuarios/listAllUsers.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/usuarios/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/usuarios/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +184,9 @@
       <workItem from="1579417230632" duration="61000" />
       <workItem from="1579417514882" duration="42087000" />
       <workItem from="1579489627086" duration="13550000" />
-      <workItem from="1579573043827" duration="20370000" />
+      <workItem from="1579573043827" duration="21327000" />
+      <workItem from="1579643934809" duration="2184000" />
+      <workItem from="1579700030935" duration="4558000" />
     </task>
     <servers />
   </component>
