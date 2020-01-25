@@ -14,21 +14,47 @@ class Amizades extends Model
     public function find($campos = [] , $options = [])
     {
         if (empty($campos)) {
-            return Amizades::all();
+            $amizade = Amizades::all();
         }
+
+        if ($options && empty($campos)) {
+            $amizade = Amizades::where([$options])->get();
+        }
+
+        if ($campos && empty($options)) {
+            $amizade = Amizades::all($campos);
+        }
+
+        return $amizade;
+    }
+
+    public function findFirst($campos = [] , $options = [])
+    {
+        if (empty($campos) && empty($options)) {
+            $amizade = Amizades::get()->first();
+        }
+
+        if ($options && empty($campos)) {
+            $amizade = Amizades::where($options)->get()->first();
+        }
+
+        if ($campos && empty($options)) {
+            $amizade = Amizades::get($campos)->first();
+        }
+
+        return $amizade;
     }
 
     public function verificarAmizade($idUsuarioDe, $idUsuarioPara)
     {
-        $amizade = Amizades::where('idUsuarioDe', $idUsuarioDe)
-            ->where('idUsuarioPara', '=', $idUsuarioPara, 'OR')
-            ->where('idUsuarioDe', $idUsuarioPara)
-            ->where('idUsuarioPara', '=', $idUsuarioDe)->get();
+        $amizade = Amizades::where([
+            ['idUsuarioDe', $idUsuarioDe],
+            ['idUsuarioPara', $idUsuarioPara]
+        ])->orWhere([
+            ['idUsuarioPara', $idUsuarioDe],
+            ['idUsuarioDe', $idUsuarioPara]
+        ])->get()->first();
 
-        if (count($amizade) == 0) {
-            return false;
-        }
-
-        return $amizade[0];
+        return $amizade;
     }
 }

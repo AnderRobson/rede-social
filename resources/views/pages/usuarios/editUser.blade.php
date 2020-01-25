@@ -51,7 +51,7 @@
         </article>
         <article class="col-1">
             <!--Classe "col" definir o tamanho da caixa-->
-            <a href="config/sair.php" class="menuHamburguer"><i class="icon-sign-out" style="color:#fff;"></i></a>
+            <a href="{{route('user.logout')}}" class="menuHamburguer"><i class="icon-sign-out" style="color:#fff;"></i></a>
         </article>
     </section>
     <!--Efeito de fundo mais escuro-->
@@ -98,14 +98,14 @@
         <section class="row">
             <div class="btn-group-vertical">
                 <h3 class="centralizar icone">Menu</h3>
-                <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
-                <a href="{{route('user.show', ['usuarios' => $usuario['id']])}}" class="btnLateral icone"><i class="icon-person icone"> Meu Perfil</i></a>
+                <a href="{{route('user.feed')}}" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
+                <a href="{{route('user.show', ['usuarios' => $usuarioLogado['id']])}}" class="btnLateral icone"><i class="icon-person icone"> Meu Perfil</i></a>
                 <a href="amigos.php" class="btnLateral icone"><i class="icon-organization icone"> Amigos</i></a>
                 <a href="{{route('user.usuarios')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
                 <a href="imagens.php" class="btnLateral icone"><i class="icon-file-media icone"> Imagens</i></a>
                 <a href="arquivos.php" class="btnLateral icone"><i class="icon-file-directory icone"> Arquivos</i></a>
-                <a href="#" class="btnLateral icone btConfiguracao"><i class="icon-gear icone"> Configuração</i></a>
-                <a href="index.php" class="btnLateralSair icone"><i class="icon-sign-out icone"> Sair</i></a>
+                <a href="" class="btnLateral icone btConfiguracao"><i class="icon-gear icone"> Configuração</i></a>
+                <a href="{{route('user.logout')}}" class="btnLateralSair icone"><i class="icon-sign-out icone"> Sair</i></a>
             </div>
         </section>
     </aside>

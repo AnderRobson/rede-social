@@ -8,6 +8,7 @@ use App\Posts;
 use App\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use phpDocumentor\Reflection\Types\Integer;
 
 class UsuariosController extends Controller
 {
@@ -18,28 +19,67 @@ class UsuariosController extends Controller
      */
     public function index()
     {
+        session_start();
+        if (isset($_SESSION['idUser'])) {
+            return redirect()->route('user.feed');
+        }
+
+        $publicacoes = new Posts();
+        $publicacoes = $publicacoes->find();
+
+        return view('pages.login.login');
+    }
+
+    public function login(Request $request)
+    {
+        $validated = new Usuarios();
+        $validated = $validated->checkLogin($request['email'], $request['password']);
+
+        if ($validated) {
+            session_start();
+            $_SESSION['idUser'] = $validated['id'];
+
+            return redirect()->route('user.feed');
+        }
+
+        return redirect()->route('user.index');
+    }
+
+    public function feed()
+    {
+        session_start();
+        if (! isset($_SESSION['idUser'])) {
+            return redirect()->route('user.feed');
+        }
+
+        $usuarioLogado = new Usuarios();
+        $usuarioLogado = $usuarioLogado->loggedUser($_SESSION['idUser']);
         $publicacoes = new Posts();
         $publicacoes = $publicacoes->find();
 
         return view('pages.publicacoes.publicacao',[
+            'usuarioLogado' => $usuarioLogado,
             'publicacoes' => $publicacoes
         ]);
     }
 
     public function users(Request $request)
     {
+        session_start();
+        if (! isset($_SESSION['idUser'])) {
+            return redirect()->route('user.feed');
+        }
+
+        $usuarioLogado = new Usuarios();
+        $usuarioLogado = $usuarioLogado->loggedUser($_SESSION['idUser']);
         $usuarios = new Usuarios;
         $usuarios = $usuarios->find();
 
         return view('pages.usuarios.listAllUsers', [
+            'usuarioLogado' => $usuarioLogado,
             'usuarios' => $usuarios,
             'request' => $request
         ]);
-    }
-
-    public function find(Usuarios $usuarios)
-    {
-        return $usuarios;
     }
 
     /**
@@ -82,16 +122,23 @@ class UsuariosController extends Controller
      */
     public function show(Usuarios $usuarios)
     {
+        session_start();
+        if (! isset($_SESSION['idUser'])) {
+            return redirect()->route('user.feed');
+        }
 
+        $usuarioLogado = new Usuarios();
+        $usuarioLogado = $usuarioLogado->loggedUser($_SESSION['idUser']);
         $graduacao = new Graduacoes();
         $graduacao = $graduacao->find(['id' => $usuarios['graduacao']]);
         $usuarios['graduacao'] = $graduacao['titulo'];
         $amizades = new Amizades();
-        $amizades = $amizades->verificarAmizade($usuarios['id'],2) ?? null;
+        $amizades = $amizades->verificarAmizade($usuarioLogado['id'], $usuarios['id']);
         $publicacoes = new Posts();
         $publicacoes = $publicacoes->find(null, ['idUsuario' => $usuarios['id']]);
 
         return view('pages.usuarios.profile', [
+            'usuarioLogado' => $usuarioLogado,
             'usuarios' => $usuarios,
             'amizades' => $amizades,
             'publicacoes' => $publicacoes
@@ -106,7 +153,16 @@ class UsuariosController extends Controller
      */
     public function edit(Usuarios $usuarios)
     {
+        session_start();
+        if (! isset($_SESSION['idUser'])) {
+            return redirect()->route('user.feed');
+        }
+
+        $usuarioLogado = new Usuarios();
+        $usuarioLogado = $usuarioLogado->loggedUser($_SESSION['idUser']);
+
         return view('pages.usuarios.editUSer', [
+            'usuarioLogado' => $usuarioLogado,
             'usuario' => $usuarios
         ]);
     }
@@ -146,7 +202,21 @@ class UsuariosController extends Controller
      */
     public function destroy(Usuarios $usuarios)
     {
+        session_start();
+        if (! isset($_SESSION['idUser'])) {
+            return redirect()->route('user.feed');
+        }
+
         $usuarios->delete();
+
+        return redirect()->route('user.index');
+    }
+
+    public function logout()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
 
         return redirect()->route('user.index');
     }

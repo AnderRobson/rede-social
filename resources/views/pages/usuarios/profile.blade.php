@@ -51,7 +51,7 @@
         </article>
         <article class="col-1">
             <!--Classe "col" definir o tamanho da caixa-->
-            <a href="config/sair.php" class="menuHamburguer"><i class="icon-sign-out" style="color:#fff;"></i></a>
+            <a href="{{route('user.logout')}}" class="menuHamburguer"><i class="icon-sign-out" style="color:#fff;"></i></a>
         </article>
     </section>
     <main class="container">
@@ -71,24 +71,24 @@
 
                 <div id="menu">
                     @if($amizades)
-                        <form action="{{route('amizades.solicitacao', ['amizade' => $usuarios['id'], 'idUsuarioPara' => 2])}}" method="POST">
+                        <form action="{{route('amizades.solicitacao', ['amizade' => $usuarios['id']])}}" method="POST">
                             @csrf
                             @method('PUT')
                             <h2>{{$usuarios['nome'] . " " . $usuarios['sobrenome']}}</h2>
                             <h4>{{$usuarios['graduacao']}}</h4>
 
-                            @if($amizades['aceite'] == 2)
+                            @if($amizades['aceite'] == 3)
                                 <input type="submit" name="solicitacao" value="Desfazer amizade">
                             @elseif($amizades['aceite'] == 1)
                                 <input type="submit" name="solicitacao" value="Aceitar">
                                 <input type="submit" name="solicitacao" value="Recusar">
-                            @elseif($amizades['aceite'] == 3)
+                            @elseif($amizades['aceite'] == 2)
                                 <input type="submit" name="solicitacao" value="remover">
                             @endif
                             <input type="submit" name="chat" value="conversar">
                         </form>
                     @else
-                        <form action="{{route('amizades.solicitacao', ['amizade' => $usuarios['id'], 'idUsuarioPara' => 2])}}" method="POST">
+                        <form action="{{route('amizades.solicitacao', ['amizade' => $usuarios['id']])}}" method="POST">
                             @csrf
                             @method('PUT')
                             <h2>{{$usuarios['nome'] . " " . $usuarios['sobrenome']}}</h2>
@@ -139,14 +139,14 @@
         <section class="row">
             <div class="btn-group-vertical">
                 <h3 class="centralizar icone">Menu</h3>
-                <a href="{{route('user.index')}}" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
-                <a href="#" class="btnLateral icone"><i class="icon-person icone"> Meu Perfil</i></a>
+                <a href="{{route('user.feed')}}" class="btnLateral icone"><i class="icon-home icone"> Home</i></a>
+                <a href="{{route('user.show', ['usuarios' => $usuarioLogado['id']])}}" class="btnLateral icone"><i class="icon-person icone"> Meu Perfil</i></a>
                 <a href="amigos.php" class="btnLateral icone"><i class="icon-organization icone"> Amigos</i></a>
                 <a href="{{route('user.usuarios')}}" class="btnLateral icone"><i class="icon-organization icone"> Usuários</i></a>
                 <a href="imagens.php" class="btnLateral icone"><i class="icon-file-media icone"> Imagens</i></a>
                 <a href="arquivos.php" class="btnLateral icone"><i class="icon-file-directory icone"> Arquivos</i></a>
-                <a href="#" class="btnLateral icone btConfiguracao"><i class="icon-gear icone"> Configuração</i></a>
-                <a href="index.php" class="btnLateralSair icone"><i class="icon-sign-out icone"> Sair</i></a>
+                <a href="" class="btnLateral icone btConfiguracao"><i class="icon-gear icone"> Configuração</i></a>
+                <a href="{{route('user.logout')}}" class="btnLateralSair icone"><i class="icon-sign-out icone"> Sair</i></a>
             </div>
         </section>
     </aside>

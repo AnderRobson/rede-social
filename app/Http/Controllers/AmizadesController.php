@@ -92,19 +92,23 @@ class AmizadesController extends Controller
 //     * @param  \App\Amizades  $amizades
      * @return \Illuminate\Http\Response
      */
-    public function solicitacao(Request $request, $idUsuarioDe)
+    public function solicitacao(Request $request, $idUsuarioPara)
     {
-//        dd($request);
+        session_start();
+        if (! isset($_SESSION['idUser'])) {
+            return redirect()->route('user.feed');
+        }
+
         if (isset($request['solicitacao'])) {
             $amizades = new Amizades();
             if ($request['solicitacao'] == 'Adicionar') {
-                $amizades->idUsuarioDe = $idUsuarioDe;
-                $amizades->idUsuarioPara = $request['idUsuarioPara'];
-                $amizades->aceite = 3;
+                $amizades->idUsuarioDe = $_SESSION['idUser'];
+                $amizades->idUsuarioPara = $idUsuarioPara;
+                $amizades->aceite = 2;
 
                 $amizades->save();
             } else {
-                $amizade = $amizades->verificarAmizade($idUsuarioDe,$request['idUsuarioPara']);
+                $amizade = $amizades->verificarAmizade($_SESSION['idUser'],$idUsuarioPara);
                 $amizade->delete();
             }
         } //else if ($request['solicitacao'] == 'Aceitar') {
@@ -117,7 +121,7 @@ class AmizadesController extends Controller
 //        } else {
 ////
 //        }
-        return redirect()->route('user.show', ['usuarios' => $idUsuarioDe]);
+        return redirect()->route('user.show', ['usuarios' => $idUsuarioPara]);
     }
 
     /**
